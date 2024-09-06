@@ -89,9 +89,10 @@ prefecture_idはユーザーが住んでいる県のイベントを表示させ�
 | date               | date | null: false |
 | start_time         | time | null: false |
 | duration_id        | integer | null: false |
-| generation_id      | integer | null: false |
-| gender_id          | integer | null: false |
-| status_id          | integer | null: false |
+| generation_id      | integer |
+| gender_id          | integer |
+| status_id          | integer |
+| user               | references | null: false , foreign_key: true |
 
 ### Association
 - belongs_to user

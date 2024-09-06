@@ -24,5 +24,6 @@ class User < ApplicationRecord
   validates :gender_id, presence: true
   
   #アソシエーション
+  has_many :items
 
 end
