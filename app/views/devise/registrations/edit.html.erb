@@ -1,0 +1,94 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_with model: @user, method: :patch, class: 'registration-main', local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="profile">
+    <p class=''>
+      <h3>プロフィール設定</h3>
+    </p>
+
+    <%# アイコン画像 %>
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        アイコン登録
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"user-image" %>
+      </div>
+    </div>
+    <%# アイコン画像 %>
+
+  <div class="field">
+    <%= f.label :ニックネーム %> <em>(6 characters maximum)</em><br />
+    <%= f.text_field :nickname, autofocus: true, maxlength: "6", placeholder:"例) おとも" %>
+    <span class="indispensable">必須</span>
+  </div>
+
+  <div class="field">
+    <%= f.label :年齢 %> <em>(半角数字)</em><br />
+    <%= f.text_field :age, maxlength: "2", placeholder:"例）21" %>
+    <span class="indispensable">必須</span>
+  </div>
+
+  <div class="field">
+    <%= f.label :紹介文 %> <em>(半角数字)</em><br />
+    <%= f.text_field :introduction, maxlength: "160", placeholder:"例）空き時間でカフェに行くことが多いので、お茶のお伴を探しています！趣味：映画鑑賞/スイーツ探訪/古着屋めぐりetc…" %>
+    <span class="indispensable">必須</span>
+  </div>
+
+  <div class="weight-bold-text">
+    拠点
+    <span class="indispensable">必須</span>
+  </div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"user-prefecture"}) %> 
+
+  <div class="weight-bold-text">
+    年齢
+    <span class="indispensable">必須</span>
+  </div>
+    <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"user-gender"}) %> 
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%# <h3>Cancel my account</h3> %>
+
+<%# <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "Back", :back %>
