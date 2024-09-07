@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  before_action :authenticate_user!, only: [:new ]
+  before_action :authenticate_user!, only: [:new, :show ]
 
   def index
   @event = Event.all
@@ -11,7 +11,6 @@ class EventsController < ApplicationController
   end
 
   def create
-  # @user = User.find(params[:user_id])
   @event = Event.create(event_params)
    if @event.save
     redirect_to root_path
@@ -19,6 +18,10 @@ class EventsController < ApplicationController
     redirect_to root_path
     # render :new, status: :unprocessable_entity
    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
   
   private
