@@ -1,0 +1,78 @@
+</header>
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">OTOMOを募集する</h2>
+    <%= form_with(model: @event, local: true) do |f| %>
+
+    <%# <%= render 'shared/error_messages', model: f.object %> 
+   
+    <%# イベント説明 %>
+    <div class="new-items">
+      <div class="weight-bold-text">
+        イベントタイトル
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :title, class:"items-text", id:"item-name", placeholder:"イベント名（必須 40文字まで)", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          イベントの説明
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"イベントの説明（必須 500文字まで)青葉公園で17:00くらいから、犬のお散歩のお伴を探しています！" ,rows:"7" ,maxlength:"500" %>
+      </div>
+      <div class="weight-bold-text">開催日時
+      <span class="indispensable">必須</span>
+      </div>
+       <%= f.date_field :date, class:"items-text", id:"item-info" %>
+       <%= f.time_select :start_time, class:"items-text", id:"item-info" %>
+    </div>
+    <%# /商品名と商品説明 %>
+
+    <%# 商品の詳細 %>
+    <div class="items-detail">
+      
+      <div class="form">
+        <div class="weight-bold-text">
+          所用時間
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:duration_id, Duration.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"item-category"}) %>
+        <div class="weight-bold-text">
+          開催地域
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {selected: current_user.prefecture_id }, {class:"select-box", id:"item-prefecture"}) %>
+        <div class="weight-bold-text">
+          OTOMOの性別
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:gender_id, Gender.all, :id, :name, {selected: 3 }, {class:"select-box", id:"item-sales-status"}) %>
+      </div>
+    </div>
+    <%# /商品の詳細 %>
+
+    <%# 配送について %>
+    <div class="items-detail">
+      <div class="form">
+
+        <div class="weight-bold-text">
+          OTOMOの年齢
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:generation_id, Generation.all, :id, :name, {selected: 1 }, {class:"select-box", id:"item-shipping-fee-status"}) %> 
+        <div class="weight-bold-text">
+          ステータス
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:status_id, Status.all, :id, :name,  {selected: 1 }, {class:"select-box", id:"item-scheduled-delivery"}) %>
+      </div>
+    </div>
+    <%# /配送について %>
+
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%= f.submit "募集する！" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>

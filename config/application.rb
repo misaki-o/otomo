@@ -12,6 +12,15 @@ module Otomo
     config.load_defaults 7.0
 
     config.time_zone = 'Tokyo'
+    # DB側から受け取った時刻をどのタイムゾーンとして解釈するか
+    config.active_record.default_timezone = :local  
+
+    # デフォルトの言語を日本語に変更
+    # デフォルトは:enになっている
+    config.i18n.default_locale = :ja
+    # localeファイルの読み込み設定
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
     config.active_storage.variant_processor = :mini_magick
 
     # Configuration for the application, engines, and railties goes here.
