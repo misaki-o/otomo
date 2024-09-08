@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="events/show.css">
+
 </head>
 
 イベント詳細ページ
@@ -34,3 +34,20 @@
           年齢: <%= @event.generation.name %>
         </div>
       </li>
+
+  <div id="comments">
+     <h4>＜コメント一覧＞</h4>
+    <% @event.messages.each do |message| %>
+      <div class="comment">
+        <p class="user-info"><%= message.user.nickname %>： </p>
+        <p><%= message.content%></p>
+      </div>
+    <% end %>
+  </div>
+
+      <div class="comment-form">
+    <%= form_with model: [@event, @message], id: "comment-form" do |f| %>
+      <%= f.text_area :content , class: "comment-text"%>
+      <%= f.submit "メッセージ送信", class: "comment-submit" %>
+      <% end %>
+      </div>
