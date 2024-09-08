@@ -18,4 +18,5 @@ class Event < ApplicationRecord
 
     #アソシエーション
     belongs_to :user
+    has_many :messages
 end
