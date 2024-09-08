@@ -1,10 +1,13 @@
-イベント詳細ページ
+<head>
+<link rel="stylesheet" href="events/show.css">
+</head>
 
+イベント詳細ページ
       <li class='list'>
 
         <%# <%= link_to user_path(user.id) do %> 
           <div class='item-img-content'> 
-          <%= image_tag @event.user.image, class: "item-img" if @event.user.image.attached? %> 
+          <%= image_tag @event.user.image, class: "user-icon" if @event.user.image.attached? %> 
           </div> 
           主催者: <%= @event.user.nickname %>
         <%# <% end %> 
