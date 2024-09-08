@@ -74,8 +74,6 @@
 prefecture_idはユーザーが住んでいる県のイベントを表示させるため
 
 ### Association
-- has_many :room_users
-- has_many :rooms, through: :room_users
 - has_many :messages
 - has_many :events
 
@@ -96,43 +94,19 @@ prefecture_idはユーザーが住んでいる県のイベントを表示させ�
 
 ### Association
 - belongs_to user
-- has_one room
-
-## rooms テーブル
-
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| event              | references | null: false , foreign_key: true |
-| message            | references | null: false , foreign_key: true |
-
-### Association
-belongs_to event
-has_many :users, through: :room_users
-
+- has_many messages
 
 ## messages テーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| comment            | text | null: false |
-| room            | references | null: false , foreign_key: true |
-| user            | references | null: false , foreign_key: true |
-
-### Association
-belongs_to room
-belongs_to user
-
-
-## room_users テーブル
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
+| content            | text | null: false |
+| event              | references | null: false , foreign_key: true |
 | user               | references | null: false , foreign_key: true |
-| room               | references | null: false , foreign_key: true |
 
 ### Association
-belongs_to room
+belongs_to event
 belongs_to user
-
 
 ## maps テーブル (追加実装)
 
