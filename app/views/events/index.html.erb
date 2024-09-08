@@ -19,7 +19,7 @@ OTOMO TOPpage
         <div class='item-img-content'> 
            <%= image_tag event.user.image, class: "item-img" if event.user.image.attached? %> 
         </div> 
-        <%= link_to "root_path(item.id)" do %>
+        <%= link_to event_path(event.id) do %>
           <div class='item-info'>
           <h3 class='item-name'>
             <%= event.title %>
@@ -28,7 +28,7 @@ OTOMO TOPpage
           <div class='item-price'>
             イベント日時
             <br>
-          <span><%= event.date %> <%= event.start_time.strftime( "%H:%M" ) %> ~ </span>
+          <span><%= event.date.strftime('%Y/%m/%d') %> <%= event.start_time.strftime( "%H:%M" ) %> ～ </span>
           </div>
         </div>
         
