@@ -1,3 +1,7 @@
+<head>
+   <link rel="stylesheet" href="events/index.css">
+</head>
+
 OTOMO TOPpage
 
 <header>
@@ -16,22 +20,21 @@ OTOMO TOPpage
 
   <% @event.each do |event| %>
       <li class='list'>
-        <div class='item-img-content'> 
-           <%= image_tag event.user.image, class: "item-img" if event.user.image.attached? %> 
+        <div class='event-info'>
+        <div class='icon-content'> 
+           <%= image_tag event.user.image, class: "user-icon" if event.user.image.attached? %> 
         </div> 
+        <div class='event-daytime'>
         <%= link_to event_path(event.id) do %>
-          <div class='item-info'>
-          <h3 class='item-name'>
+          <h3 class='event-name'>
             <%= event.title %>
           </h3>
         <% end %>
-          <div class='item-price'>
             イベント日時
             <br>
           <span><%= event.date.strftime('%Y/%m/%d') %> <%= event.start_time.strftime( "%H:%M" ) %> ～ </span>
           </div>
-        </div>
-        
+        </div> 
       </li>
   <%end%>
 

@@ -1,0 +1,18 @@
+.user-icon {
+  width: 10vh;
+  height: 10vh;
+  border-radius:50%;
+  
+}
+
+.event-info {
+  display: flex;
+  background-color: rgb(173, 224, 220);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.event-daytime {
+  display: flex;
+  flex-direction: column;
+}
