@@ -10,7 +10,7 @@ class Event < ApplicationRecord
 
     validates :title, presence: true
     validates :description, presence: true, length: { maximum: 300 }
-    validates :prefecture_id, presence: true
+    validates :prefecture_id, presence: true, numericality: {other_than: 1}
     validates :date, presence: true
     validates :start_time, presence: true
     validates :duration, presence: true
@@ -19,4 +19,5 @@ class Event < ApplicationRecord
     #アソシエーション
     belongs_to :user
     has_many :messages
+    
 end

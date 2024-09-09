@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
   def index
   @event = Event.all
+  @searchprefecture = params[:search]
+  @search = @event.where(prefecture_id: @searchprefecture)
   end
 
   def new
@@ -37,8 +39,6 @@ class EventsController < ApplicationController
     render :edit, status: :unprocessable_entity
     end
   end
-
-
   
   private
   
