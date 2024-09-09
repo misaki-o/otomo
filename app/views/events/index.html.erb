@@ -18,7 +18,16 @@ OTOMO TOPpage
 
 <main>
 
-  <% @event.each do |event| %>
+  <%# 検索機能 %>
+  <%= form_tag({controller:"events",action:"index"}, method: :get) do %>
+    地域検索 <%= select_tag :search, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %> 
+    <%= submit_tag "絞り込み" %>
+  <% end %>
+
+  <%# 検索の有無で表示を分ける %>
+  <% if @search.present? %>
+    開催地：<%= @searchprefecture %> 
+    <% @search.each do |event| %>
       <li class='list'>
         <div class='event-info'>
           <%= event.status.name %>
@@ -37,6 +46,33 @@ OTOMO TOPpage
           </div>
         </div> 
       </li>
+    <%end%>
+  <% else %>
+
+  該当県：データなし
+  <br>
+  全国のイベントを表示
+
+      <% @event.each do |event| %>
+      <li class='list'>
+        <div class='event-info'>
+          <%= event.status.name %>
+        <div class='icon-content'>
+           <%= image_tag event.user.image, class: "user-icon" if event.user.image.attached? %> 
+        </div> 
+        <div class='event-daytime'>
+        <%= link_to event_path(event.id) do %>
+          <h3 class='event-name'>
+            <%= event.title %>
+          </h3>
+        <% end %>
+            イベント日時
+            <br>
+          <span><%= event.date.strftime('%Y/%m/%d') %> <%= event.start_time.strftime( "%H:%M" ) %> ～ </span>
+          </div>
+        </div> 
+      </li>
+    <%end%>
   <%end%>
 
 

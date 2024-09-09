@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
   validates :introduction, presence: true, length: { maximum: 160 }
   validates :age, presence: true, format: { with: number_only }
-  validates :prefecture_id, presence: true
+  validates :prefecture_id, presence: true, numericality: {other_than: 1}
   validates :gender_id, presence: true
   
   #アソシエーション
