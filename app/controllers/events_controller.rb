@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  before_action :authenticate_user!, only: [:new, :show ]
+  before_action :authenticate_user!, only: [:new, :show, :edit ]
 
   def index
   @event = Event.all
@@ -24,11 +24,27 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @message = Message.new
   end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+    redirect_to event_path(@event.id)
+    else
+    render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   
   private
   
   def event_params
     params.require(:event).permit(:title,:description,:prefecture_id,:date,:start_time,:duration_id,:generation_id,:gender_id,:status_id).merge(user_id: current_user.id)
   end
+
 
 end

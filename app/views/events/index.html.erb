@@ -21,6 +21,7 @@ OTOMO TOPpage
   <% @event.each do |event| %>
       <li class='list'>
         <div class='event-info'>
+          <%= event.status.name %>
         <div class='icon-content'>
            <%= image_tag event.user.image, class: "user-icon" if event.user.image.attached? %> 
         </div> 

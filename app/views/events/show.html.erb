@@ -13,6 +13,16 @@
           <% end %> 
           <div class='item-info'>
             <%= @event.status.name %>
+
+            
+      <%# 編集リンク %>
+      <% if @event.user.id == current_user.id %>
+        <%= link_to(edit_event_path(@event.id), class: 'purchase-btn') do %>
+         <span class='purchase-btn-text'>編集する</span>
+         <%# <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+        <% end %>
+      <% end %>
+
           <h3 class='item-name'>
             <%= @event.title %>
             <br>
