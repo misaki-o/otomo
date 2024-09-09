@@ -5,12 +5,12 @@
 イベント詳細ページ
       <li class='list'>
 
-        <%# <%= link_to user_path(user.id) do %> 
           <div class='item-img-content'> 
+          <%= link_to user_path(@event.user.id) do %> 
           <%= image_tag @event.user.image, class: "user-icon" if @event.user.image.attached? %> 
           </div> 
-          主催者: <%= @event.user.nickname %>
-        <%# <% end %> 
+          <%= @event.user.nickname %>
+          <% end %> 
           <div class='item-info'>
             <%= @event.status.name %>
           <h3 class='item-name'>
