@@ -3,9 +3,8 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show, :edit ]
 
   def index
-  @event = Event.all
-  @searchprefecture = params[:search]
-  @search = @event.where(prefecture_id: @searchprefecture)
+  @event = Event.search(params[:search1], params[:search3] )
+  # 検索が空欄の時は、全部取ってくるようにモデルに設定済
   end
 
   def new
@@ -39,6 +38,10 @@ class EventsController < ApplicationController
     render :edit, status: :unprocessable_entity
     end
   end
+
+  # def search
+    # @event = Event.search(params[:search1], params[:search3] )
+  # end
   
   private
   
