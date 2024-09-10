@@ -19,5 +19,20 @@ class Event < ApplicationRecord
     #アソシエーション
     belongs_to :user
     has_many :messages
+
+    # 検索機能の条件分岐
+    def self.search(search1,search3)
+        if search1 == nil &&  search3 == nil
+            Event.all 
+        elsif search1 == "1" &&  search3 == "0"
+            Event.all 
+        elsif search1 >= "2" &&  search3 ==  "0"
+            Event.where(prefecture_id: search1 )
+        elsif search1 == "1" &&  search3 >=  "1"
+            Event.where(duration_id: search3 )
+        else
+            Event.where(prefecture_id: search1 , duration_id: search3 )
+        end
+    end
     
 end
