@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show, :edit ]
 
   def index
-  @event = Event.search(params[:search1], params[:search3] )
+  @event = Event.search(params[:search1], params[:search3] ).order("date ASC")
   # 検索が空欄の時は、全部取ってくるようにモデルに設定済
   end
 
