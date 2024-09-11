@@ -1,6 +1,151 @@
+/* イベント情報 */
 
 .user-icon {
   width: 10vh;
   height: 10vh;
   border-radius:50%;
+}
+
+.user_info{
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sta_edi{
+  width: 230px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.sta_edi a:link{  
+  text-decoration-color: #3B8B93;
+  text-decoration: none;
+}
+
+.edit_btn_text {
+  color: #3B8B93;
+  border-bottom: 1px solid #3B8B93;
+}
+
+.user_name{
+  text-decoration: none;
+  text-decoration-color: #3B8B93;
+}
+
+.titledis{
+  margin-left: 20px;
+  width: 66vw;
+}
+
+.info_box{
+  display: flex;
+}
+
+.hissu_info{
+  padding-bottom: 10px;
+}
+
+.status{
+  border-radius: 30px;
+  width: 75px;
+  height: 25px;
+  background-color: white;
+  border: solid #75BDC9;
+  border-width:thick;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+
+
+/* イベント情報 */
+/* メッセージ機能 */
+
+.comments{
+  background-color: white;
+  border: solid 1.5px;
+  width: 75vw;
+}
+
+.nakami{
+  margin: 15px 25px 0 25px;
+}
+
+.commenter_name{
+  font-weight: bold;
+  font-size: small;
+}
+
+.comment_text{
+  background-color: #EDECD1;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.commenter_icon{
+  width: 8vh;
+  height: 8vh;
+  border-radius:50%;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.one_come{
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.attention{
+  display: flex;
+  justify-content: center;
+}
+
+.comment_form{
+  padding-top: 15px;
+  padding-left: 10px;
+  width: calc(75vw - 10px);
+  height: 50px;
+  border: solid 1.5px;
+  margin-top: 40px;
+}
+
+.comment_submit{
+  background-color: #75BDC9;
+  border: none;
+  width: 180px;
+  height: 50px;
+  color: white;
+  font-size: large;
+}
+
+.comment_zone{
+  width: calc(75vw + 50px);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.submit_btn{
+  margin-top: 30px;
+  width: 75vw;
+  padding: 0 25px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.onegai{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #75BDC9;
+  color: white;
+  height: 30px;
+  margin-top: 40px;
+
 }

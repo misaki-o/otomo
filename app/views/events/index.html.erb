@@ -2,49 +2,50 @@
    <link rel="stylesheet" href="events/index.css">
 </head>
 
-OTOMO TOPpage
+<body>
 
-<header>
-    <ul class='lists-right'>
-      <% if user_signed_in? %>
-        <li><%= link_to current_user.nickname, user_path(current_user.id) , class: "user-nickname" %> </li> 
-        <li><%= link_to 'ログアウト',  destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %></li> 
-      <%else%>
-        <li><%= link_to 'ログイン', new_user_session_path,  class: "login" %></li>
-        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-      <%end%>     
-    </ul>
-</header>
-
-<main>
-
+<div class="main">
+  
+  <div class="title-search">
+  <%= image_tag 'OTOMO_icon_megane-03.png', size: "25x25",alt: "search img",class: "icons" %>
+  <h3 class="midashi">イベントを検索する</h3>
+  </div>
   <%# 検索機能 %>
+  <div class="search_form">
   <%= form_tag({controller:"events",action:"index"}, method: :get) do %>
-地域 <%= select_tag :search1, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %> 
+    開催地： <%= select_tag :search1, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %> 
     <%# 地域検索 <%= select_tag :search2, options_for_select(.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %>  
-    所用時間 <%= select_tag :search3, options_for_select(Duration.all.map { |p| [p.name, p.id] }, {selected: 0 }), class:"select-box", id:"item-prefecture" %> 
+    所用時間： <%= select_tag :search3, options_for_select(Duration.all.map { |p| [p.name, p.id] }, {selected: 0 }), class:"select-box", id:"item-prefecture" %> 
     <%= submit_tag "絞り込み" %>
   <% end %>
+  </div>
 
   <%# 検索条件 %>
-<% if params[:search1] != nil %>
-  ＜検索結果＞
-  開催地：  <%= Prefecture.find(params[:search1]).name %>
-<%else%>
-<%end%>
-<% if params[:search3] != nil %>
-  所用時間：<%= Duration.find(params[:search3]).name %>
-<%else%>
-<%end%>
+  <div class="search_condition"> 
+  <% if params[:search1] != nil %>
+    ＜検索結果＞
+    <div class="conditions">開催地：  <%= Prefecture.find(params[:search1]).name %></div>
+  <%else%>
+  <%end%>
+  <% if params[:search3] != nil %>
+    <div class="conditions">所用時間：<%= Duration.find(params[:search3]).name %></div>
+  <%else%>
+  <%end%>
+  </div>
 
-  <br>
-  イベントを表示
+    <div class="title-search">
+  <%= image_tag 'OTOMO_icon_list-04.png', size: "25x25",alt: "search img",class: "icons" %>
+  <h3 class="midashi">すべてのイベント</h3>
+  </div>
 
+   <%# 各イベント %>
     <% @event.each do |event| %>
       <li class='list'>
         <div class='event-info'>
-          <%= event.status.name %>
-        <div class='icon-content'>
+          <div class="zone">
+          <div class= "status"><%= event.status.name %> </div>
+          </div>
+        <div class='user_img'>
            <%= image_tag event.user.image, class: "user-icon" if event.user.image.attached? %> 
         </div> 
         <div class='event-daytime'>
@@ -61,13 +62,12 @@ OTOMO TOPpage
       </li>
     <%end%>
 
-
+</div>
 
   <%# 募集リンク %>
     <%= link_to(new_event_path, class: 'purchase-btn') do %>
-     <span class='purchase-btn-text'>OTOMOを募る！</span>
-     <%# <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    <%= image_tag 'OTOMO_icon_newevent-06.png', size: '150x150' ,alt: "new event button",class: "newevent" %>
     <% end %>
 
-</main>
 
+</body>

@@ -1,8 +1,16 @@
-<h1>プロフィール</h1>
+<head>
+  <link rel="stylesheet" href="users/show.css">
+</head>
 
+<body>
+<div class="main">
+<div class= "title_box">
+<%= image_tag 'OTOMO_icon_nico-02.png', size: "25x25",alt: "list img",class: "icons" %>
+<h3>プロフィール</h3>
+</div>
 
 <div class='icon-content'> 
- <%= image_tag @user.image, class: "user-icon" if @user.image.attached? %> 
+ <%= image_tag @user.image, class: "user_icon_big" if @user.image.attached? %> 
 </div> 
 <p>名前 : <%= @user.nickname %></p>
 <p>紹介文 : <%= @user.introduction %></p>
@@ -10,9 +18,9 @@
 <p>年齢 : <%= @user.age %></p>
 <p>性別 : <%= @user.gender.name %></p>
 
-<ul class=''>
- <li>
-  <%# <%= link_to '編集する',  edit_user_registration_path, class: "edit" %> 
-  <%= link_to "戻る", :back %>
- </li> 
-</ul>
+  <div class ="back_btn_sc">
+  <%= link_to "< back", :back %>
+  </div>
+
+</div>
+</body>

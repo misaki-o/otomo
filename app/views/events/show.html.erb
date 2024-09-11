@@ -1,63 +1,101 @@
 <head>
-
+<%# イベント詳細ページ %>
+<link rel="stylesheet" href="events/show.css">
 </head>
 
-イベント詳細ページ
-      <li class='list'>
 
-          <div class='item-img-content'> 
-          <%= link_to user_path(@event.user.id) do %> 
-          <%= image_tag @event.user.image, class: "user-icon" if @event.user.image.attached? %> 
-          </div> 
-          <%= @event.user.nickname %>
-          <% end %> 
-          <div class='item-info'>
-            <%= @event.status.name %>
+<body>
+  <div class="main">
+  
+    <div class="title-search">
+    <%= image_tag 'OTOMO_icon_nico-02.png', size: "25x25",alt: "search img",class: "icons" %>
+    <h3 class="midashi">イベントの詳細</h3>
+    </div>
 
-            
-      <%# 編集リンク %>
-      <% if @event.user.id == current_user.id %>
-        <%= link_to(edit_event_path(@event.id), class: 'purchase-btn') do %>
-         <span class='purchase-btn-text'>編集する</span>
-         <%# <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-        <% end %>
-      <% end %>
-
-          <h3 class='item-name'>
-            <%= @event.title %>
-            <br>
-            <%= @event.description %>
-          </h3>       
-          <div class='item-price'>
-          ■イベント日時
-            <br>
-          <span><%= @event.date.strftime('%Y/%m/%d') %> <%= @event.start_time.strftime( "%H:%M" ) %> ～ </span>
+ 
+      <div class='info_box'>
+        <%# user info %>
+          <div class='user_info'> 
+            <%= link_to user_path(@event.user.id) do %>
+            <%= image_tag @event.user.image, class: "user-icon" if @event.user.image.attached? %> 
+            <% end %>
+            <div class="user_name">
+            <%= @event.user.nickname %>
+            </div>
           </div>
-          ■開催地
-            <br>
-          @ <%= @event.prefecture.name %>
-          <br>
-          ■求めるOTOMOの条件
-          <br>
-          性別: <%= @event.gender.name %>
-          <br>
-          年齢: <%= @event.generation.name %>
+       <div class="hissu_info">
+        <div class="sta_edi">
+            <div class="status">
+            <%= @event.status.name %>
+            </div>
+            
+         <%# 編集リンク %>
+         <% if @event.user.id == current_user.id %>
+           <%= link_to(edit_event_path(@event.id), class: 'edit_btn') do %>
+            <span class='edit_btn_text'>イベントを編集</span>
+           <% end %>
+         <% end %>
         </div>
-      </li>
 
-  <div id="comments">
-     <h4>＜コメント一覧＞</h4>
-    <% @event.messages.each do |message| %>
-      <div class="comment">
-        <p class="user-info"><%= message.user.nickname %>： </p>
-        <p><%= message.content%></p>
+        <div class="titledis">
+            <h3>
+            <%= @event.title %>
+            </h3>            
+            <%= @event.description %>
+        </div>
+       </div>
       </div>
+
+    <div class='locate_info'>
+          <h4>●基本情報</h4>
+          イベント日時
+          <br>
+          <span><%= @event.date.strftime('%Y/%m/%d') %>   <%= @event.start_time.strftime( "%H:%M" ) %> ～ (所用時間： <%= @event.duration.name %>) </span>
+          <br>
+          開催地    @ <%= @event.prefecture.name %>
+          <br>
+    </div>
+    <div class='ninni_info'>
+          <h4>●OTOMOの条件</h4>
+          性別： <%= @event.gender.name %>
+          <br>
+          年齢： <%= @event.generation.name %>
+    </div>
+      
+    
+
+  
+     <h4>●メッセージ</h4>
+  <div class="comments">
+   <div class="nakami">
+      <div class="attention">
+      <div>主催者にメッセージを送って質問や参加希望を伝えましょう</div>
+      </div>
+    
+    <% @event.messages.each do |message| %>
+    <div class="one_come">
+        <%= link_to user_path(message.user.id) do %>
+        <%= image_tag message.user.image , class: "commenter_icon" %>  
+        <%end%>
+      <div class="comment">
+        <p class="commenter_name"><%= message.user.nickname %></p>
+        <p class="comment_text"><%= message.content%></p>
+      </div>
+    </div>
     <% end %>
+   </div>
+    <div class= "onegai"><p>参加者が決まったらイベント編集ページからステータスを「募集終了」に変更しましょう</p>
+    </div>
   </div>
 
-      <div class="comment-form">
-    <%= form_with model: [@event, @message], id: "comment-form" do |f| %>
-      <%= f.text_area :content , class: "comment-text"%>
-      <%= f.submit "メッセージ送信", class: "comment-submit" %>
+      <div class="comment_zone">
+    <%= form_with model: [@event, @message] do |f| %>
+      <%= f.text_area :content , placeholder:"例）参加希望です！もし参加可能でしたら、集合場所を教えてください。", class: "comment_form"%>
+      <div class="submit_btn">
+      <%= f.submit "メッセージ送信", class: "comment_submit" %>
+      </div>
       <% end %>
       </div>
+
+  </div>
+</body>
