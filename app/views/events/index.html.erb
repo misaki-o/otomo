@@ -49,11 +49,13 @@
            <%= image_tag event.user.image, class: "user-icon" if event.user.image.attached? %> 
         </div> 
         <div class='event-daytime'>
-        <%= link_to event_path(event.id) do %>
           <h3 class='event-name'>
+        <%= link_to event_path(event.id) do %>
+            <div class="eventname">
             <%= event.title %>
-          </h3>
+            </div>
         <% end %>
+         </h3>
             イベント日時
             <br>
           <span><%= event.date.strftime('%Y/%m/%d') %> <%= event.start_time.strftime( "%H:%M" ) %> ～ </span>

@@ -84,6 +84,14 @@ margin-right: 5px;
   margin-bottom: 8px;
 }
 
+.event-name a:link {
+  text-decoration-color: black;
+}
+
+.eventname {
+  color: black;
+}
+
 /* event lists */
 /* new bottun */
 
