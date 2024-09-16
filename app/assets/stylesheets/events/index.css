@@ -24,9 +24,9 @@
 
 .title-search{
   display: flex;
-  /* background-color: aquamarine; */
   align-items: center;
-  margin-top: 10px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .icons{
@@ -38,7 +38,7 @@ margin-right: 5px;
 
 .list{
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .user-icon {
@@ -50,8 +50,10 @@ margin-right: 5px;
 .event-info {
   display: flex;
   width: 80vw;
+  height: 14vh;
   background-color: rgb(236, 239, 209);
   padding: 5px;
+  
 }
 
 .zone{
@@ -68,20 +70,23 @@ margin-right: 5px;
 
 .status{
   border-radius: 30px;
-  width: 75px;
-  height: 25px;
+  width: 76px;
+  height: 28px;
   background-color: white;
   border: solid #75BDC9;
   border-width:thick;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .event-daytime {
   display: flex;
   flex-direction: column;
   margin-bottom: 8px;
+  justify-content: space-around;
 }
 
 .event-name a:link {
@@ -90,6 +95,7 @@ margin-right: 5px;
 
 .eventname {
   color: black;
+  margin: 5px 0;
 }
 
 /* event lists */

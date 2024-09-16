@@ -46,25 +46,25 @@
   display: flex;
 }
 
+.locate_info{
+  margin-top: 20px;
+}
+
 .hissu_info{
   padding-bottom: 10px;
 }
 
-.status{
-  border-radius: 30px;
-  width: 75px;
-  height: 25px;
-  background-color: white;
-  border: solid #75BDC9;
-  border-width:thick;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
+.ninni_info{
+  margin-top: 20px;
 }
 
 
 /* イベント情報 */
 /* メッセージ機能 */
+
+.message_info{
+  margin-top: 20px;
+}
 
 .comments{
   background-color: white;
