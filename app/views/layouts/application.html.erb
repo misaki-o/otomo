@@ -6,11 +6,36 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "reset", media: 'all', "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  <header>
+  <div class="headbar">
+    <%= link_to(root_path) do %>
+    <%= image_tag 'OTOMO_logo.png', size: "240x49",alt: "Site Logo",class: "logo" %>
+    <%end%>
+    <ul class='lists-right'>
+      <% if user_signed_in? %>
+        <li><%= link_to current_user.nickname, user_path(current_user.id) , class: "user-nickname" %> </li> 
+        <li><%= link_to 'Sign out',  destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %></li> 
+      <%else%>
+        <li><%= link_to 'Sign in', new_user_session_path,  class: "login" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class: "sign-up" %></li>
+      <%end%>     
+    </ul>
+  <div>
+  </header>
+
     <%= yield %>
+
+   <footer>
+      <div class= "footbar">
+       <div class="copyright"> © 2024 odajima </div>
+      </div>
+   </footer>
+
   </body>
 </html>

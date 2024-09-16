@@ -4,6 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+         def update_without_current_password(params, *options)
+
+          if params[:password].blank? && params[:password_confirmation].blank? && params[:current_password].blank?
+            params.delete(:password)
+            params.delete(:password_confirmation)
+            params.delete(:current_password)
+          end
+        # if条件はpasswordとpassword_confirmationの入力フォームが
+        # 空の場合のみに処理するのを明示するため
+      
+          result = update_attributes(params, *options)
+          clean_up_passwords
+          result
+        end
+
   #active_hashとの紐づけ
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :gender
@@ -16,7 +31,9 @@ class User < ApplicationRecord
   number_only = /\A[0-9]+\z/  #半角数字のみOK
   
   validates :nickname, presence: true
-  validates :password, format: { with: letter_num_mix }
+  with_options on: :create do
+    validates :password, format: { with: letter_num_mix }
+  end
   validates :birthday, presence: true
   validates :introduction, presence: true, length: { maximum: 160 }
   validates :age, presence: true, format: { with: number_only }

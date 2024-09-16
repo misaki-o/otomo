@@ -13,3 +13,54 @@
  *= require_tree .
  *= require_self
  */
+
+ /* サイト全体のフォント指定 */
+body {
+font-family: "游ゴシック", "Hiragino Sans";
+}
+
+/* header footer*/
+
+.headbar{
+  background-color: #75bdc9;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footbar{
+  background-color: #75bdc9;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright{
+  color: white;
+}
+
+.logo{
+  margin-left: 10px;
+}
+
+.lists-right {
+  width: 70vw;
+  background-color: #75bdc9;
+  list-style: none;
+  justify-content: right;
+  display:flex; 
+  align-items: center;
+}
+
+.user-nickname, .logout, .login, .sign-up{
+  color: white;
+  margin-left: 35px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* header footer*/

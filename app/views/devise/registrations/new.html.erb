@@ -84,7 +84,7 @@
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"user-prefecture"}) %> 
 
   <div class="weight-bold-text">
-    年齢
+    性別
     <span class="indispensable">必須</span>
   </div>
     <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"user-gender"}) %> 

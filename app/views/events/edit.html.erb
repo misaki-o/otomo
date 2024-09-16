@@ -1,49 +1,60 @@
-</header>
-  <div class="items-sell-main">
-    <h2 class="items-sell-title">イベントを編集する</h2>
-    <%= form_with(model: @event, local: true) do |f| %>
+<head>
+  <link rel="stylesheet" href="events/new.css">
+</head>
 
-    <%# <%= render 'shared/error_messages', model: f.object %> 
-   
-    <%# イベント説明 %>
+<body>
+<div class="main">
+  <div class="items-sell-main">
+    <div class= "title_box">
+    <%= image_tag 'OTOMO_icon_list-04.png', size: "25x25",alt: "list img",class: "icons" %>
+    <h3 class="page_title">イベントの編集</h3>
+    </div>
+
+<%# イベント説明 %>
+    <%= form_with(model: @event, local: true) do |f| %>
+       <%# <%= render 'shared/error_messages', model: f.object %> 
+    <div class="weight-bold-text">
+          ステータス：
+        </div>
+        <%= f.collection_select(:status_id, Status.all, :id, :name, {class:"status_box", id:"item-scheduled-delivery"}) %>
+    
+    <br><br>
+    <h4 style="display:inline">●基本情報</h4> 
+    <span class="indispensable">*必須</span>
     <div class="new-items">
       <div class="weight-bold-text">
-        イベントタイトル
-        <span class="indispensable">必須</span>
+        タイトル：
       </div>
       <%= f.text_area :title, class:"items-text", id:"item-name", placeholder:"イベント名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
-          イベントの説明
-          <span class="indispensable">必須</span>
+          イベントの説明：
         </div>
-        <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"イベントの説明（必須 500文字まで)青葉公園で17:00くらいから、犬のお散歩のお伴を探しています！" ,rows:"7" ,maxlength:"500" %>
+        <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"イベントの説明（必須 400文字まで)青葉公園で17:00くらいから、犬のお散歩のお伴を探しています！" ,rows:"7" ,maxlength:"400" %>
       </div>
-      <div class="weight-bold-text">開催日時
-      <span class="indispensable">必須</span>
+      <div class="weight-bold-text">開催日時：
       </div>
-       <%= f.date_field :date, class:"items-text", id:"item-info" %>
-       <%= f.time_select :start_time, class:"items-text", id:"item-info" %>
+       <%= f.date_field :date, class:"times-text", id:"item-info" %>
+       <%= f.time_select :start_time, class:"times-text", id:"item-info" %>
     </div>
-    <%# /商品名と商品説明 %>
 
-    <%# 商品の詳細 %>
     <div class="items-detail">
       
       <div class="form">
         <div class="weight-bold-text">
-          所用時間
-          <span class="indispensable">必須</span>
+          所用時間：
         </div>
-        <%= f.collection_select(:duration_id, Duration.all, :id, :name, {include_blank: "---"}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:duration_id, Duration.all, :id, :name, {selected: "1"}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
-          開催地域
-          <span class="indispensable">必須</span>
+          開催地：
         </div>
         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {selected: current_user.prefecture_id }, {class:"select-box", id:"item-prefecture"}) %>
+
+    <br><br>
+    <h4 style="display:inline">●OTOMOの条件</h4> 
+    <span class="indispensable">*任意</span>
         <div class="weight-bold-text">
-          OTOMOの性別
-          <span class="indispensable">任意</span>
+          性別：
         </div>
         <%= f.collection_select(:gender_id, Gender.all, :id, :name, {selected: 3 }, {class:"select-box", id:"item-sales-status"}) %>
       </div>
@@ -55,24 +66,22 @@
       <div class="form">
 
         <div class="weight-bold-text">
-          OTOMOの年齢
-          <span class="indispensable">任意</span>
+          年齢：
         </div>
         <%= f.collection_select(:generation_id, Generation.all, :id, :name, {selected: 1 }, {class:"select-box", id:"item-shipping-fee-status"}) %> 
-        <div class="weight-bold-text">
-          ステータス
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:status_id, Status.all, :id, :name,  {selected: 1 }, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        
       </div>
     </div>
     <%# /配送について %>
 
     <%# 下部ボタン %>
-    <div class="sell-btn-contents">
-      <%= f.submit "更新する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    <div class="btn_contents">
+      <%= f.submit "イベントを編集" ,class:"toroku_btn" %>
+      <%=link_to '< back', root_path, class:"back_btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
   <% end %>
+
+</div>
+</body>
