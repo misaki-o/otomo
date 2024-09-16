@@ -2,26 +2,13 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  def update
-    @user = User.find(params[:id])
-    if@user.update(user_params)
-    redirect_to @user, notice: 'プロフィールが更新されました。'
-    else
-      logger.debug(@user.errors.full_messages) # デバッグ用にエラーメッセージをログ出力
-    flash.now[:alert] = @user.errors.full_messages.join(", ")
-    render :edit
-    end
-      # binding.pry
-  end
-
-  protected
   # パスワードなしでプロフ編集を許可
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
 
   private
-  def user_params
+  def account_update_params
     params.require(:user).permit(:nickname, :introduction, :age, :prefecture_id, :gender_id, :image)
   end
 
