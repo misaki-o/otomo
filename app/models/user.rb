@@ -4,21 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         def update_without_current_password(params, *options)
-
-          if params[:password].blank? && params[:password_confirmation].blank? && params[:current_password].blank?
-            params.delete(:password)
-            params.delete(:password_confirmation)
-            params.delete(:current_password)
-          end
-        # if条件はpasswordとpassword_confirmationの入力フォームが
-        # 空の場合のみに処理するのを明示するため
-      
-          result = update_attributes(params, *options)
-          clean_up_passwords
-          result
-        end
-
   #active_hashとの紐づけ
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :gender
