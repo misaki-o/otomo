@@ -8,3 +8,24 @@
 .back_btn_sc{
   margin-bottom: 30px;
 }
+
+.icon_content{
+  margin: 20px 0;
+}
+
+.prof_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.link_edit{
+  margin-top: 20px;
+}
+
+.link_edit a:link{  
+  text-decoration: none;
+  color: #3B8B93;
+  border-bottom: 1px solid #3B8B93;
+}
