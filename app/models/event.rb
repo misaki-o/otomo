@@ -14,6 +14,11 @@ class Event < ApplicationRecord
     validates :date, presence: true
     validates :start_time, presence: true
     validates :duration, presence: true
+    validates :address, presence: true
+    
+    #geocoderの設定
+    geocoded_by :address
+    after_validation :geocode, if: :address_changed?
     
 
     #アソシエーション
