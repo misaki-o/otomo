@@ -10,14 +10,18 @@
     <h3 class="items-sell-title">イベントの登録</h3>
     </div>
 
+
 <%# イベント説明 %>
     <%= form_with(model: @event, local: true) do |f| %>
-       <%# <%= render 'shared/error_messages', model: f.object %> 
+          <%# エラーメッセージ %>
+          <%= render 'layouts/error_messages', model: f.object %>
     <div class="weight-bold-text">
           ステータス：
         </div>
         <%= f.collection_select(:status_id, Status.all, :id, :name,  {selected: 1 }, {class:"status_box", id:"item-scheduled-delivery"}) %>
     
+
+
     <br><br>
     <h4 style="display:inline">●基本情報</h4> 
     <span class="indispensable">*必須</span>
@@ -49,6 +53,67 @@
           開催地：
         </div>
         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {selected: current_user.prefecture_id }, {class:"select-box", id:"item-prefecture"}) %>
+         <div class="weight-bold-text">
+          詳細住所：
+        </div>
+        <%= f.text_area :address, class:"items-text", id:"address", placeholder:"例）京都市 中京区 OTOMO Cafe" ,maxlength:"50" %>
+        <%# 地図%> 
+        <br>
+        <input type="button" value="地図表示" onclick="codeAddress()">
+        <div id="display">※住所を入力し、地図表示ボタンを押してください</div>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+let geocoder
+
+const display = document.getElementById('display')
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+  map = new google.maps.Map(document.getElementById('map'), {
+    //latが緯度、lngが経度
+    center: {lat: 35.68123620000001, lng: 139.7671248},
+    //数値は0〜21まで指定可能 数値が大きいほど拡大
+    zoom: 17,
+  });
+
+//positionに指定した座標にピンを表示
+  marker = new google.maps.Marker({
+    position:  {lat: 40.7828, lng:-73.9653},
+    map: map
+  });
+}
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>
+<%# 地図%> 
 
     <br><br>
     <h4 style="display:inline">●OTOMOの条件</h4> 
@@ -59,9 +124,7 @@
         <%= f.collection_select(:gender_id, Gender.all, :id, :name, {selected: 3 }, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
-    <%# /商品の詳細 %>
 
-    <%# 配送について %>
     <div class="items-detail">
       <div class="form">
 
@@ -72,7 +135,6 @@
         
       </div>
     </div>
-    <%# /配送について %>
 
     <%# 下部ボタン %>
     <div class="btn_contents">

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     patch '/users/:id', to: 'users/registrations#update'
   end
 
-
   root to: "events#index"
   resources :events, only: [:index, :new, :create, :show, :edit, :update] do
   end
@@ -15,5 +14,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :messages, only: [:create]
   end
+
+  # resources :maps, only: [:index]
 
 end

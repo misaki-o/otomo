@@ -5,7 +5,8 @@
 <body>
 
 <div class="main">
-  
+
+
   <div class="title-search">
   <%= image_tag 'OTOMO_icon_megane-03.png', size: "25x25",alt: "search img",class: "icons" %>
   <h3 class="midashi">イベントを検索する</h3>
@@ -14,10 +15,10 @@
   <div class="search_form">
   <%= form_tag({controller:"events",action:"index"}, method: :get) do %>
     開催地： <%= select_tag :search1, options_for_select(Prefecture.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %> 
-    <%# 地域検索 <%= select_tag :search2, options_for_select(.all.map { |p| [p.name, p.id] }, {selected: 1 }), class:"select-box", id:"item-prefecture" %>  
     所用時間： <%= select_tag :search3, options_for_select(Duration.all.map { |p| [p.name, p.id] }, {selected: 0 }), class:"select-box", id:"item-prefecture" %> 
     <%= submit_tag "絞り込み" %>
   <% end %>
+
   </div>
 
   <%# 検索条件 %>
@@ -32,6 +33,14 @@
   <%else%>
   <%end%>
   </div>
+
+  <br>
+   <%# 付近のイベント検索 %>
+  <%= form_with(url: "", local: true, method: :get, class: "") do |form| %>
+  <%= form.text_field :keyword, placeholder: "例）渋谷駅", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+  <% end %>
+
 
     <div class="title-search">
   <%= image_tag 'OTOMO_icon_list-04.png', size: "25x25",alt: "search img",class: "icons" %>
