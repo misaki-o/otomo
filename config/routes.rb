@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :maps, only: [:index]
+  # resources :maps, only: [:index]
 
 end

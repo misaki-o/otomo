@@ -2,8 +2,8 @@
 
 <input id="address" type="textbox" value="GeekSalon">
 <input type="button" value="Encode" onclick="codeAddress()">
-<!-- 下の1行を追加 -->
-<div id="display">何かが表示される、、、、！</div>
+
+<div id="display"></div>
 
 <div id='map'></div>
 
@@ -17,15 +17,15 @@
 <script>
 let map
 let geocoder
-// 下の1行を追加 
+ 
 const display = document.getElementById('display')
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
   map = new google.maps.Map(document.getElementById('map'), {
-    //latが緯度、lngが経度を示します
+    //latが緯度、lngが経度を示す
     center: {lat: 35.68123620000001, lng: 139.7671248},
-    //数値は0〜21まで指定できます。数値が大きいほど拡大されます
+    //数値は0〜21まで。数値が大きいほど拡大
     zoom: 12,
   });
 

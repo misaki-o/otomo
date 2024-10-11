@@ -74,19 +74,19 @@
 <script>
 let map
 let geocoder
-// 下の1行を追加 
+
 const display = document.getElementById('display')
 
 function initMap(){
   geocoder = new google.maps.Geocoder()
   map = new google.maps.Map(document.getElementById('map'), {
-    //latが緯度、lngが経度を示します
+    //latが緯度、lngが経度
     center: {lat: 35.68123620000001, lng: 139.7671248},
-    //数値は0〜21まで指定できます。数値が大きいほど拡大されます
-    zoom: 15,
+    //数値は0〜21まで指定可能 数値が大きいほど拡大
+    zoom: 17,
   });
 
-//positionに指定した座標にピンを表示させます
+//positionに指定した座標にピンを表示
   marker = new google.maps.Marker({
     position:  {lat: 40.7828, lng:-73.9653},
     map: map
@@ -103,14 +103,14 @@ function codeAddress(){
           map: map,
           position: results[0].geometry.location
       });
-      // 下の1行を追加 
+
       display.textContent = "検索結果：" + results[ 0 ].geometry.location
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
   });   
 }
-// ここまで追加 
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>
 <%# 地図%> 

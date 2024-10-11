@@ -19,7 +19,6 @@ class Event < ApplicationRecord
     #geocoderの設定
     geocoded_by :address
     after_validation :geocode, if: :address_changed?
-    
 
     #アソシエーション
     belongs_to :user

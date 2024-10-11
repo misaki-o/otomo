@@ -48,12 +48,12 @@
 
     <div class='locate_info'>
           <h4>●基本情報</h4>
-          イベント日時
-          <br>
+          イベント日時：
           <span><%= @event.date.strftime('%Y/%m/%d') %>   <%= @event.start_time.strftime( "%H:%M" ) %> ～ (所用時間： <%= @event.duration.name %>) </span>
           <br>
-          開催地    @ <%= @event.prefecture.name %>
+          開催地：    <%= @event.prefecture.name %>
           <br>
+          詳細住所： <%= @event.address %>
     </div>
     <div class='ninni_info'>
           <h4>●OTOMOの条件</h4>
