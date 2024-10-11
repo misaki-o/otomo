@@ -79,3 +79,8 @@ gem 'pry-rails'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'geocoder', '~> 1.8', '>= 1.8.3'
+
+# renderでのデプロイ
+group :production do
+  gem 'pg'
+end
