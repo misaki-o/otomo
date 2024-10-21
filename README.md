@@ -49,6 +49,15 @@
 4.イベント検索機能
 5.メッセージ機能
 
+## アプリへのアクセス
+
+URL: https://otomo.onrender.com
+ID: cat
+PASS: 2222
+
+テストアカウント(企業側動作確認用)
+e-mail: test@sample.com
+PASS: test01
 
 ## テーブル設計
 
@@ -65,9 +74,6 @@
 | prefecture_id      | integer | null: false |
 | introduction       | text   | null: false |
 
-登録時、メールアドレスで認証できるよう設定(時間ないのであとにするかも…)
-ログインに必要なのはemailとpassword
-生年月日は利用者の傾向を探るためにとる想定
 
 ユーザーが相手のプロフィールの項目を参照して求めるOTOMOの条件と
 一致しているか確認できるようにしておく
