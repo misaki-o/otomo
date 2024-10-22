@@ -51,13 +51,18 @@
 
 ## アプリへのアクセス
 
-URL: https://otomo.onrender.com
-ID: cat
-PASS: 2222
+https://otomo.onrender.com
+
+Basic認証
+| ------------------ | --------------- |
+| ID                 | cat             |
+| PASS               | 2222            |
+
 
 テストアカウント(企業側動作確認用)
-e-mail: test@sample.com
-PASS: test01
+| ------------------ | --------------- |
+| e-mail             | test@sample.com |
+| PASS               | test01          |
 
 ## テーブル設計
 
