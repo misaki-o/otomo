@@ -58,7 +58,7 @@ https://otomo.onrender.com
 ID: cat  
 PASS: 2222  
 
-■テストアカウント(企業側動作確認用)  
+■テストアカウント（ヘッダー「Sign in」からサインイン）  
 e-mail: test@sample.com  
 PASS: test01
 
